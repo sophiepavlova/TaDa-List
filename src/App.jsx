@@ -7,12 +7,16 @@ import ModalWarning from './components/ModalWarning.jsx';
 
 function App() {
   return (
-    <div>
-      <h1> TaDa! List </h1>
-      <Button />
-      <ToDoList />
-      <Button />
-      <ToDoForm />
+    <div className='app'>
+      <div className='sidebar'>
+        <div className='sidebar-header'>
+          <h1> TaDa! List </h1>
+          <Button color='button-add' text='+ Add' />
+        </div>
+        <ToDoList text='remove' />
+        <Button color='button-remove align-right' text='clear the list' />
+        <ToDoForm text='+ Add' text1='Cancel' />
+      </div>
       <Stats />
     </div>
   );

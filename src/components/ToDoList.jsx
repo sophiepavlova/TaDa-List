@@ -1,12 +1,12 @@
 import ToDoItem from './ToDoItem.jsx';
 
-export default function ToDoList() {
+export default function ToDoList({ text }) {
   return (
     <div>
       <ul>
-        <ToDoItem />
-        <ToDoItem />
-        <ToDoItem />
+        <ToDoItem text={text} />
+        <ToDoItem text={text} />
+        <ToDoItem text={text} />
       </ul>
     </div>
   );
