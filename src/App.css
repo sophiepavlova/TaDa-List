@@ -27,6 +27,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.4em;
 }
 
 .app {
@@ -35,7 +36,18 @@ body {
   grid-template-columns: 34rem 34rem;
   column-gap: 4rem;
   align-items: start;
+  padding: 20px;
 }
+
+@media (max-width: 76rem) {
+  .app {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    width: min(100vw, 42rem);
+    margin: 0 auto;
+  }
+}
+
 .button {
   /* background-color: var(--color-add); */
   color: #343a40;
@@ -46,6 +58,7 @@ body {
   font-family: 'IM Fell French Canon SC', serif;
   cursor: pointer;
   transition: 0.3s;
+  flex-shrink: 0;
 }
 .button-add {
   background-color: var(--color-add);
@@ -122,6 +135,10 @@ textarea {
   font-family: inherit;
 }
 
+.stats-messages {
+  display: flex;
+  flex-direction: column;
+}
 .stats-message {
   display: flex;
   flex-direction: row;
@@ -132,6 +149,8 @@ textarea {
 .stats-message .number {
   font-size: 64px;
   font-family: 'IM Fell French Canon SC', serif;
+  line-height: 0.8;
+  font-feature-settings: 'lnum';
 }
 .stats-message .done {
   color: var(--color-done);
@@ -147,8 +166,8 @@ textarea {
 }
 .diagram {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 24px;
+  align-items: center;
 }
 .diagram .done {
   background-color: var(--color-done);
@@ -161,4 +180,13 @@ textarea {
   flex-direction: row;
   gap: 8px;
   align-items: center;
+  padding-bottom: 12px;
+}
+
+.fraction {
+  width: fit-content;
+  margin-left: auto;
+  font-size: 64px;
+  font-family: 'IM Fell French Canon SC', serif;
+  align-self: flex-end;
 }
