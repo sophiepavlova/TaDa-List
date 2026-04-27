@@ -1,12 +1,14 @@
 import ToDoItem from './ToDoItem.jsx';
 
-export default function ToDoList({ text }) {
+export default function ToDoList({ onRemove, text, tasks }) {
+  console.log(tasks);
+
   return (
     <div>
       <ul>
-        <ToDoItem text={text} />
-        <ToDoItem text={text} />
-        <ToDoItem text={text} />
+        {tasks.map((task) => (
+          <ToDoItem onRemove={onRemove} task={task} text={text} key={task.id} />
+        ))}
       </ul>
     </div>
   );

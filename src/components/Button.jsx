@@ -1,3 +1,7 @@
-export default function Button({ text, color }) {
-  return <button className={`button ${color}`}>{text}</button>;
+export default function Button({ className, onClick, text, color }) {
+  return (
+    <button className={`button ${color} ${className || ''}`} onClick={onClick}>
+      {text}
+    </button>
+  );
 }

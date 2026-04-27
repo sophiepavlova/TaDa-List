@@ -1,23 +1,85 @@
 import { useState } from 'react';
 import Button from './components/Button.jsx';
 import ToDoList from './components/ToDoList.jsx';
-import ToDoForm from './components/ToDoForm.jsx';
+import AddTaskForm from './components/AddTaskForm.jsx';
 import Stats from './components/Stats.jsx';
 import ModalWarning from './components/ModalWarning.jsx';
 
+const initialTasks = [
+  {
+    id: 1,
+    name: 'Do the tai chi',
+    completed: false,
+  },
+  {
+    id: 2,
+    name: 'Watch The Boys Watch The Boys Watch The Boys Watch The Boys Watch The Boys Watch The Boys Watch The Boys',
+    completed: false,
+  },
+  {
+    id: 3,
+    name: 'Do the laundry',
+    completed: true,
+  },
+];
+
 function App() {
+  const [task, setTask] = useState([]);
+  const [tasks, setTasks] = useState([...initialTasks]);
+  const [formIsHidden, setFormIsHidden] = useState(true);
+  const allTasksCounter = tasks.length;
+
+  function handleAddTask(newTask) {
+    setTask(newTask);
+    setTasks((tasks) => [...tasks, newTask]);
+  }
+
+  function handleToggleForm() {
+    console.log(formIsHidden);
+    formIsHidden ? setFormIsHidden(false) : setFormIsHidden(true);
+  }
+
+  function handleRemoveTask(id) {
+    setTasks((tasks) => tasks.filter((task) => task.id !== id));
+  }
+
+  function handleClearList() {
+    setTasks([]);
+  }
+
   return (
     <div className='app'>
       <div className='sidebar'>
         <div className='sidebar-header'>
           <h1> TaDa! List </h1>
-          <Button color='button-add' text='+ Add' />
+          <Button
+            className={`${!formIsHidden ? 'hide' : ''}`}
+            onClick={handleToggleForm}
+            color='button-add'
+            text='+ Add'
+          />
         </div>
-        <ToDoList text='remove' />
-        <Button color='button-remove align-right' text='clear the list' />
-        <ToDoForm text='+ Add' text1='Cancel' />
+        <ToDoList
+          onRemove={handleRemoveTask}
+          task={task}
+          tasks={tasks}
+          text='remove'
+        />
+        <Button
+          onClick={handleClearList}
+          className={`${tasks.length === 0 ? 'hide' : ''}`}
+          color='button-remove align-right'
+          text='clear the list'
+        />
+        <AddTaskForm
+          onClick={handleToggleForm}
+          onAddTask={handleAddTask}
+          formIsHidden={formIsHidden}
+          text='+ Add'
+          text1='Cancel'
+        />
       </div>
-      <Stats />
+      <Stats allTasksCounter={allTasksCounter} />
     </div>
   );
 }

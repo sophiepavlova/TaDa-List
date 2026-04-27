@@ -1,14 +1,18 @@
 import Button from './Button';
-export default function ToDoItem({ text }) {
+export default function ToDoItem({ onRemove, text, task }) {
   return (
     <div className='item'>
       <li>
         <label>
           <input type='checkbox' />
-          <span>Item</span>
+          <span>{task.name}</span>
         </label>
       </li>
-      <Button color='button-remove' text={text} />
+      <Button
+        onClick={() => onRemove(task.id)}
+        color='button-remove'
+        text={text}
+      />
     </div>
   );
 }
