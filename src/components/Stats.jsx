@@ -5,20 +5,22 @@ export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
     { name: 'Remaining', value: 3 },
   ];
   const COLORS = ['#ee861e', '#5d6d91'];
-
+  const total = allTasksCounter;
+  const checked = tasksCheckedCounter;
+  const nonChecked = allTasksCounter - tasksCheckedCounter;
+  const checkedPercent = Math.round((checked / total) * 100);
+  const nonCheckedPercent = Math.round((nonChecked / total) * 100);
   return (
     <div>
       <h1>Statistics</h1>
 
       <div className='stats-messages'>
         <div className='stats-message'>
-          <div className='number done'> {tasksCheckedCounter}</div>
+          <div className='number done'> {checked}</div>
           <div>things done today!</div>
         </div>
         <div className='stats-message'>
-          <div className='number not-done'>
-            {allTasksCounter - tasksCheckedCounter}
-          </div>
+          <div className='number not-done'>{nonChecked}</div>
           <div>things are still waiting for you</div>
         </div>
       </div>
@@ -34,15 +36,15 @@ export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
         <div>
           <div className='percents'>
             <div className='cirlce done'></div>
-            <div>66 %</div>
+            <div>{checkedPercent || 0} %</div>
           </div>
           <div className='percents'>
             <div className='cirlce not-done'></div>
-            <div>33 %</div>
+            <div>{nonCheckedPercent || 0} %</div>
           </div>
         </div>
         <div className='fraction'>
-          {tasksCheckedCounter}/{allTasksCounter}
+          {checked}/{total}
         </div>
       </div>
     </div>

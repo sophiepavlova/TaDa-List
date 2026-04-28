@@ -27,6 +27,8 @@ function App() {
   const [task, setTask] = useState([]);
   const [tasks, setTasks] = useState([...initialTasks]);
   const [formIsHidden, setFormIsHidden] = useState(true);
+  const [modalIsOpen, setModaiIsOpen] = useState(false);
+
   const allTasksCounter = tasks.length;
   let tasksCheckedCounter = 0;
   tasks.forEach(
@@ -36,7 +38,7 @@ function App() {
           ? tasksCheckedCounter + 1
           : tasksCheckedCounter),
   );
-  console.log(tasksCheckedCounter);
+  // console.log(tasksCheckedCounter);
 
   function handleAddTask(newTask) {
     setTask(newTask);
@@ -54,6 +56,7 @@ function App() {
 
   function handleClearList() {
     setTasks([]);
+    setModaiIsOpen(false);
   }
 
   function handleToggleCheckbox(id) {
@@ -62,6 +65,12 @@ function App() {
         task.id === id ? { ...task, completed: !task.completed } : task,
       ),
     );
+  }
+  function handleModalOpen() {
+    setModaiIsOpen(true);
+  }
+  function handleModalClose() {
+    setModaiIsOpen(false);
   }
 
   return (
@@ -76,6 +85,9 @@ function App() {
             text='+ Add'
           />
         </div>
+        {tasks.length === 0 && (
+          <p className='greating'>Time to start your tada! list?</p>
+        )}
         <ToDoList
           onToggle={handleToggleCheckbox}
           onRemove={handleRemoveTask}
@@ -83,12 +95,35 @@ function App() {
           tasks={tasks}
           text='remove'
         />
-        <Button
-          onClick={handleClearList}
-          className={`${tasks.length === 0 ? 'hide' : ''}`}
-          color='button-remove align-right'
-          text='clear the list'
-        />
+        {modalIsOpen && (
+          <div className='modal-overlay'>
+            <div className='modal'>
+              <p className='warning'>Are you sure? The list will be empty.</p>
+              <div className='modal-buttons'>
+                <Button
+                  className='cancel'
+                  onClick={handleModalClose}
+                  color='button-add'
+                  text='Cancel'
+                />
+                <Button
+                  onClick={handleClearList}
+                  className={`${tasks.length === 0 ? 'hide' : ''}`}
+                  color='button-remove align-right'
+                  text='clear the list'
+                />
+              </div>
+            </div>
+          </div>
+        )}
+        {!modalIsOpen && (
+          <Button
+            onClick={handleModalOpen}
+            className={`${tasks.length === 0 ? 'hide' : ''}`}
+            color='button-remove align-right'
+            text='clear the list'
+          />
+        )}
         <AddTaskForm
           onClick={handleToggleForm}
           onAddTask={handleAddTask}

@@ -1,7 +1,7 @@
 import ToDoItem from './ToDoItem.jsx';
 
 export default function ToDoList({ onToggle, onRemove, text, tasks }) {
-  console.log(tasks);
+  // console.log(tasks);
 
   return (
     <div>
