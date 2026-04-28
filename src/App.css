@@ -197,3 +197,45 @@ textarea {
   font-family: 'IM Fell French Canon SC', serif;
   align-self: flex-end;
 }
+
+/* 🚩Checkbox stylized */
+.todo-check {
+  display: flex;
+  align-items: center;
+  /* gap: 2rem; */
+  cursor: pointer;
+}
+
+.todo-check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-checkbox {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #111;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.todo-check input:checked + .custom-checkbox {
+  background: #6ee77d;
+}
+
+.todo-check input:checked + .custom-checkbox::after {
+  content: '✓';
+  position: absolute;
+  left: -0.7rem;
+  top: -1.5rem;
+  font-size: 3.6rem;
+  font-weight: 900;
+  color: #111;
+  line-height: 1;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+}

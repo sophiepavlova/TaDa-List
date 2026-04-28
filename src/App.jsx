@@ -28,6 +28,15 @@ function App() {
   const [tasks, setTasks] = useState([...initialTasks]);
   const [formIsHidden, setFormIsHidden] = useState(true);
   const allTasksCounter = tasks.length;
+  let tasksCheckedCounter = 0;
+  tasks.forEach(
+    (task) =>
+      (tasksCheckedCounter =
+        task.completed === true
+          ? tasksCheckedCounter + 1
+          : tasksCheckedCounter),
+  );
+  console.log(tasksCheckedCounter);
 
   function handleAddTask(newTask) {
     setTask(newTask);
@@ -47,6 +56,14 @@ function App() {
     setTasks([]);
   }
 
+  function handleToggleCheckbox(id) {
+    setTasks((tasks) =>
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
+    );
+  }
+
   return (
     <div className='app'>
       <div className='sidebar'>
@@ -60,6 +77,7 @@ function App() {
           />
         </div>
         <ToDoList
+          onToggle={handleToggleCheckbox}
           onRemove={handleRemoveTask}
           task={task}
           tasks={tasks}
@@ -79,7 +97,10 @@ function App() {
           text1='Cancel'
         />
       </div>
-      <Stats allTasksCounter={allTasksCounter} />
+      <Stats
+        allTasksCounter={allTasksCounter}
+        tasksCheckedCounter={tasksCheckedCounter}
+      />
     </div>
   );
 }

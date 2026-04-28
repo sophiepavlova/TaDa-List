@@ -1,5 +1,5 @@
 import { PieChart, Pie, Cell } from 'recharts';
-export default function Stats() {
+export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
   const data = [
     { name: 'Done', value: 6 },
     { name: 'Remaining', value: 3 },
@@ -12,11 +12,13 @@ export default function Stats() {
 
       <div className='stats-messages'>
         <div className='stats-message'>
-          <div className='number done'>6</div>
+          <div className='number done'> {tasksCheckedCounter}</div>
           <div>things done today!</div>
         </div>
         <div className='stats-message'>
-          <div className='number not-done'>3</div>
+          <div className='number not-done'>
+            {allTasksCounter - tasksCheckedCounter}
+          </div>
           <div>things are still waiting for you</div>
         </div>
       </div>
@@ -39,7 +41,9 @@ export default function Stats() {
             <div>33 %</div>
           </div>
         </div>
-        <div className='fraction'>6/9</div>
+        <div className='fraction'>
+          {tasksCheckedCounter}/{allTasksCounter}
+        </div>
       </div>
     </div>
   );
