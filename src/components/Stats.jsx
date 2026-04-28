@@ -1,15 +1,15 @@
 import { PieChart, Pie, Cell } from 'recharts';
 export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
-  const data = [
-    { name: 'Done', value: 6 },
-    { name: 'Remaining', value: 3 },
-  ];
   const COLORS = ['#ee861e', '#5d6d91'];
   const total = allTasksCounter;
   const checked = tasksCheckedCounter;
   const nonChecked = allTasksCounter - tasksCheckedCounter;
   const checkedPercent = Math.round((checked / total) * 100);
   const nonCheckedPercent = Math.round((nonChecked / total) * 100);
+  const data = [
+    { name: 'Done', value: checked },
+    { name: 'Remaining', value: nonChecked },
+  ];
   return (
     <div>
       <h1>Statistics</h1>
@@ -26,8 +26,14 @@ export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
       </div>
 
       <div className='diagram'>
-        <PieChart width={200} height={200}>
-          <Pie data={data} dataKey='value' innerRadius={60} outerRadius={80}>
+        <PieChart width={260} height={260}>
+          <Pie
+            data={data}
+            dataKey='value'
+            innerRadius={55}
+            outerRadius={105}
+            stroke='none'
+          >
             {data.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
             ))}
