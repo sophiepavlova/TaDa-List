@@ -39,7 +39,7 @@ export default function AddTaskForm({
           />
           <div>
             <Button color='button-add' onClick={handleSubmit} text={text} />
-            <Button onClick={onClick} color='button-remove' text={text1} />
+            <Button onClick={onClick} color='button-clear' text={text1} />
           </div>
         </form>
       )}

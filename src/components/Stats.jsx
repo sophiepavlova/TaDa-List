@@ -1,6 +1,6 @@
 import { PieChart, Pie, Cell } from 'recharts';
 export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
-  const COLORS = ['#ee861e', '#5d6d91'];
+  const COLORS = ['var(--color-done)', 'var(--color-not-done)'];
   const total = allTasksCounter;
   const checked = tasksCheckedCounter;
   const nonChecked = allTasksCounter - tasksCheckedCounter;
@@ -11,9 +11,13 @@ export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
     { name: 'Remaining', value: nonChecked },
   ];
   return (
-    <div>
-      <h1>Statistics</h1>
-
+    <div className='stats'>
+      <div className='stats-top'>
+        <h2>Statistics</h2>
+        <div className='fraction'>
+          {checked}/{total}
+        </div>
+      </div>
       <div className='stats-messages'>
         <div className='stats-message'>
           <div className='number done'> {checked}</div>
@@ -48,9 +52,6 @@ export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
             <div className='cirlce not-done'></div>
             <div>{nonCheckedPercent || 0} %</div>
           </div>
-        </div>
-        <div className='fraction'>
-          {checked}/{total}
         </div>
       </div>
     </div>

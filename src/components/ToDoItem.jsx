@@ -1,5 +1,5 @@
 import Button from './Button';
-export default function ToDoItem({ onToggle, onRemove, text, task }) {
+export default function ToDoItem({ onToggle, onRemove, text, task, icon }) {
   return (
     <div className='item'>
       <li>
@@ -29,7 +29,7 @@ export default function ToDoItem({ onToggle, onRemove, text, task }) {
       <Button
         onClick={() => onRemove(task.id)}
         color='button-remove'
-        text={text}
+        icon={icon}
       />
     </div>
   );

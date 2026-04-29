@@ -1,6 +1,6 @@
 import ToDoItem from './ToDoItem.jsx';
 
-export default function ToDoList({ onToggle, onRemove, text, tasks }) {
+export default function ToDoList({ onToggle, onRemove, text, tasks, icon }) {
   // console.log(tasks);
 
   return (
@@ -12,6 +12,7 @@ export default function ToDoList({ onToggle, onRemove, text, tasks }) {
             onRemove={onRemove}
             task={task}
             text={text}
+            icon={icon}
             key={task.id}
           />
         ))}

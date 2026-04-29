@@ -5,8 +5,12 @@
   --color-add-dark: #2bdb3e;
   --color-remove: #c92020;
   --color-remove-dark: #7f0606;
-  --color-done: #ee861e;
-  --color-not-done: #5d6d91;
+  --color-done: #819eda;
+  --color-not-done: #3f5a99;
+  --bg-color: #e0ebfc;
+  --bg-color-blocks: #eef5ff;
+  --stroke-color: #c8c8c8;
+  --text-color: #30343e;
 }
 * {
   margin: 0;
@@ -22,25 +26,34 @@ html {
 }
 
 body {
-  /* height: 100vh; */
-  color: #495057;
-  display: flex;
+  color: #30343e;
+  font-size: 16px;
+  font-family: 'Finlandica', sans-serif;
+  background-color: var(--bg-color);
+  background:
+    url('./assets/Ellipse\ 4.png') top center no-repeat,
+    #e0ebfc;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.4em;
-  font-family: 'Instrument Sans', sans-serif;
+  justify-content: center; */
+  /* font-family: 'Instrument Sans', sans-serif; */
 }
 
 .app {
   min-height: 66vh;
-  display: grid;
-  grid-template-columns: 34rem 34rem;
-  column-gap: 4rem;
-  align-items: start;
+  /* max-width: 1032px; */
+  max-width: 1122px;
+  margin: 0 auto;
   padding: 20px;
-  padding-top: 40px;
+  /* padding-top: 40px; */
+  padding-top: 82px;
 }
 
+.container {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
 .show {
   display: flex;
 }
@@ -56,54 +69,73 @@ body {
     margin: 0 auto;
   }
 }
+
 h1 {
-  font-family: 'Climate Crisis', sans-serif;
+  font-family: 'Finlandica', sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 128px;
   font-style: normal;
-  font-variation-settings: 'YEAR' 1979;
-  padding-bottom: 12px;
 }
-/* h1 {
-  font-family: 'IM Fell French Canon SC', serif;
-} */
+h2 {
+  font-size: 36px;
+}
+
 .button {
-  /* background-color: var(--color-add); */
-  color: #343a40;
+  /* color: #343a40; */
   padding: 12px 32px;
   border: none;
   border-radius: 56px;
-  /* font-weight: bold; */
-  font-family: 'IM Fell French Canon SC', serif;
   cursor: pointer;
   transition: 0.3s;
   flex-shrink: 0;
+  border: 1px var(--stroke-color) solid;
 }
 .button-add {
-  background-color: var(--color-add);
+  background-color: var(--bg-color-blocks);
 }
 
 .button-remove {
+  background-color: var(--bg-color-blocks);
+  /* color: white; */
+  border: 1px transparent solid;
+}
+
+.button-clear {
+  background-color: var(--bg-color-blocks);
+  border: 1px var(--color-remove) solid;
+  color: var(--color-remove);
+}
+
+.button-clear:hover {
   background-color: var(--color-remove);
   color: white;
 }
 
 .align-right {
   max-width: 230px;
-  align-self: center;
+  align-self: flex-end;
 }
 .button-add:hover {
-  background-color: var(--color-add-dark);
+  background-color: #30343e;
+  color: white;
 }
 
 .button-remove:hover {
-  background-color: var(--color-remove-dark);
+  background-color: var(--bg-color-blocks);
+  /* border: 1px var(--color-remove) solid; */
+  color: var(--color-remove);
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
+  max-width: 616px;
+  background-color: var(--bg-color-blocks);
+  padding: 24px;
+  border-radius: 8px;
 }
 
 .sidebar ul {
@@ -118,6 +150,7 @@ h1 {
   display: flex;
   gap: 16px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .item {
@@ -150,9 +183,20 @@ textarea {
   resize: none; /* removes manual resize handle */
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--stroke-color);
   font-family: inherit;
-  font-size: 1.4rem;
+  /* font-size: 1.4rem; */
+  background-color: var(--bg-color-blocks);
+}
+.stats {
+  width: 440px;
+  background-color: var(--bg-color-blocks);
+  padding: 24px;
+  border-radius: 8px;
+  max-height: 474px;
+}
+.stats-top {
+  display: flex;
 }
 
 .stats-messages {
@@ -169,19 +213,15 @@ textarea {
   text-align: center;
 }
 .stats-message .number {
-  font-size: 54px;
-  font-family: 'Climate Crisis', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  /* font-family: 'Climate Crisis', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings: 'YEAR' 1979;
+  font-variation-settings: 'YEAR' 1979; */
 }
-/* .stats-message .number {
-  font-size: 64px;
-  font-family: 'IM Fell French Canon SC', serif;
-  line-height: 0.8;
-  font-feature-settings: 'lnum';
-} */
+
 .stats-message .done {
   color: var(--color-done);
 }
@@ -190,8 +230,8 @@ textarea {
 }
 
 .cirlce {
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
 }
 .diagram {
@@ -211,18 +251,19 @@ textarea {
   gap: 8px;
   align-items: center;
   padding-bottom: 12px;
+  font-weight: 700;
 }
 
 .fraction {
   width: fit-content;
   margin-left: auto;
-  font-size: 54px;
-  font-family: 'Climate Crisis', sans-serif;
+  font-size: 36px;
+  align-self: flex-end;
+  /* font-family: 'Climate Crisis', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings: 'YEAR' 1979;
-  align-self: flex-end;
+  font-variation-settings: 'YEAR' 1979; */
 }
 
 /* 🚩Checkbox stylized */
@@ -240,26 +281,26 @@ textarea {
 }
 
 .custom-checkbox {
-  width: 2rem;
-  height: 2rem;
-  border: 2px solid #111;
-  border-radius: 0.4rem;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--text-color);
+  border-radius: 50%;
   flex-shrink: 0;
   position: relative;
 }
 
 .todo-check input:checked + .custom-checkbox {
-  background: #6ee77d;
+  background: var(--text-color);
 }
 
 .todo-check input:checked + .custom-checkbox::after {
   content: '✓';
   position: absolute;
-  left: -0.7rem;
-  top: -1.5rem;
-  font-size: 3.6rem;
+  left: 0.1rem;
+  top: 0rem;
+  font-size: 1em;
   font-weight: 900;
-  color: #495057;
+  color: white;
   line-height: 1;
 }
 
@@ -272,7 +313,7 @@ textarea {
 .modal {
   position: absolute;
   align-self: flex-end;
-  background-color: white;
+  background-color: var(--bg-color-blocks);
   top: 60px;
   padding: 64px 32px;
   display: flex;
