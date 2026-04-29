@@ -17,11 +17,11 @@ export default function Stats({ allTasksCounter, tasksCheckedCounter }) {
       <div className='stats-messages'>
         <div className='stats-message'>
           <div className='number done'> {checked}</div>
-          <div>things done today!</div>
+          <div className='stats-text'>things done today!</div>
         </div>
         <div className='stats-message'>
           <div className='number not-done'>{nonChecked}</div>
-          <div>things are still waiting for you</div>
+          <div className='stats-text'>things are still waiting for you</div>
         </div>
       </div>
 

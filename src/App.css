@@ -157,15 +157,17 @@ textarea {
 
 .stats-messages {
   display: flex;
-  flex-direction: column;
 }
 .stats-message {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 8px;
-  align-items: baseline;
+  align-items: center;
+  max-width: 200px;
 }
-
+.stats-text {
+  text-align: center;
+}
 .stats-message .number {
   font-size: 54px;
   font-family: 'Climate Crisis', sans-serif;
@@ -173,7 +175,6 @@ textarea {
   font-weight: 400;
   font-style: normal;
   font-variation-settings: 'YEAR' 1979;
-  min-width: 60px;
 }
 /* .stats-message .number {
   font-size: 64px;
