@@ -10,18 +10,13 @@ import ModalWarning from './components/ModalWarning.jsx';
 const initialTasks = [
   {
     id: 1,
-    name: 'Do the tai chi',
+    name: 'Drink some water',
     completed: false,
   },
   {
     id: 2,
-    name: 'Watch The Boys Watch The Boys Watch The Boys Watch The Boys Watch The Boys Watch The Boys Watch The Boys',
+    name: 'do one thing for a future you',
     completed: false,
-  },
-  {
-    id: 3,
-    name: 'Do the laundry',
-    completed: true,
   },
 ];
 
