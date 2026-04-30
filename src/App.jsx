@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moomin from './assets/moomin.png';
 // import trashIcon from './assets/trash.svg';
 import Button from './components/Button.jsx';
@@ -27,10 +27,19 @@ const initialTasks = [
 
 function App() {
   const [task, setTask] = useState([]);
-  const [tasks, setTasks] = useState([...initialTasks]);
+  // const [tasks, setTasks] = useState([...initialTasks]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks');
+
+    return savedTasks ? JSON.parse(savedTasks) : initialTasks;
+  });
   const [formIsHidden, setFormIsHidden] = useState(true);
   const [modalIsOpen, setModaiIsOpen] = useState(false);
   const [isImageRevealed, setIsImageRevealed] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const allTasksCounter = tasks.length;
   let tasksCheckedCounter = 0;

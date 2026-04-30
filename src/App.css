@@ -179,13 +179,13 @@ input[type='checkbox'] {
 }
 textarea {
   width: 58%;
-  min-height: 48px; /* starting size */
+  min-height: 48px;
   resize: none; /* removes manual resize handle */
   padding: 12px;
   border-radius: 8px;
   border: 1px solid var(--stroke-color);
   font-family: inherit;
-  /* font-size: 1.4rem; */
+  font-size: 16px;
   background-color: var(--bg-color-blocks);
 }
 .stats {
@@ -303,7 +303,24 @@ textarea {
   color: white;
   line-height: 1;
 }
-
+/* 🪲 Fixing the task overflowing when there is no spaces in the long task */
+.item {
+  min-width: 0;
+}
+.item li {
+  min-width: 0;
+}
+.item span {
+  min-width: 0;
+}
+.todo-check {
+  min-width: 0;
+}
+.task-text {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+/* 🪲 END: Fixing the task overflowing when there is no spaces in the long task */
 .task-text.completed {
   text-decoration: line-through;
 }
