@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import moomin from './assets/moomin.png';
 // import trashIcon from './assets/trash.svg';
 import Button from './components/Button.jsx';
 import ToDoList from './components/ToDoList.jsx';
@@ -29,6 +30,7 @@ function App() {
   const [tasks, setTasks] = useState([...initialTasks]);
   const [formIsHidden, setFormIsHidden] = useState(true);
   const [modalIsOpen, setModaiIsOpen] = useState(false);
+  const [isImageRevealed, setIsImageRevealed] = useState(false);
 
   const allTasksCounter = tasks.length;
   let tasksCheckedCounter = 0;
@@ -153,6 +155,19 @@ function App() {
           allTasksCounter={allTasksCounter}
           tasksCheckedCounter={tasksCheckedCounter}
         />
+      </div>
+      <div className='sticker'>
+        <p className={`sticker-slogan ${isImageRevealed ? 'revealed' : ''}`}>
+          You can do it!
+        </p>
+        <div className={`peek-wrapper ${isImageRevealed ? 'revealed' : ''}`}>
+          <img
+            src={moomin}
+            className='peek-image'
+            alt=''
+            onClick={() => setIsImageRevealed(!isImageRevealed)}
+          />
+        </div>
       </div>
     </div>
   );
