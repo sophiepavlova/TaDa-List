@@ -431,3 +431,9 @@ textarea {
 .sticker-slogan.revealed {
   transform: translate(-150px, -140px);
 }
+
+@media (max-width: 560px) {
+  .sticker-slogan {
+    display: none;
+  }
+}
